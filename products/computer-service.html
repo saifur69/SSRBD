@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSR COMPUTER SERVICES - আপনার নিকটস্থ বিশ্বস্ত সেবা কেন্দ্র</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 5px solid #e67e22;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        .tagline {
+            font-size: 28px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1877F2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #0e5ebd;
+            transform: translateY(-2px);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid #e67e22;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e67e22, #2c3e50);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-card h3 i {
+            color: #e67e22;
+        }
+        
+        .service-card ul {
+            list-style-type: none;
+        }
+        
+        .service-card li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .service-card li:hover {
+            transform: translateX(5px);
+        }
+        
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+            font-weight: bold;
+            background: #fef5ec;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 18px;
+            margin: 40px 0 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title i {
+            color: #e67e22;
+        }
+        
+        .guidelines {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            border: 1px solid #eee;
+        }
+        
+        .guidelines h3 {
+            color: #2c3e50;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .guidelines h3 i {
+            color: #e67e22;
+        }
+        
+        .guidelines ol, .guidelines ul {
+            margin-left: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .guidelines li {
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+        
+        .update-date {
+            text-align: right;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #666;
+            background: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 6px;
+            display: inline-block;
+            float: right;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #e67e22;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+        
+        .phone {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-link:hover {
+            background: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .important-notes {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin: 40px 0;
+            border: 1px solid #eee;
+        }
+        
+        .important-notes h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .important-notes h3 i {
+            color: #e67e22;
+        }
+        
+        .note-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .note-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #e67e22;
+            transition: all 0.3s ease;
+        }
+        
+        .note-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .note-item h4 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .note-item h4 i {
+            color: #e67e22;
+        }
+        
+        .note-item ul {
+            list-style-type: none;
+        }
+        
+        .note-item li {
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .note-item li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            border-top: 5px solid #e67e22;
+        }
+        
+        @media (max-width: 768px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+            
+            .note-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .phone {
+                font-size: 22px;
+            }
+            
+            .update-date {
+                float: none;
+                text-align: center;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                SSR COMPUTER SERVICES
+            </div>
+            <div class="tagline">📍 আপনার নিকটস্থ বিশ্বস্ত সেবা কেন্দ্র ✨</div>
+            <a href="https://www.facebook.com/profile.php?id=61568808939087" class="social-link" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook Page: Ssr Canvas & Co
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="services">
+            <div class="service-card">
+                <h3><i class="fas fa-passport"></i> পাসপোর্ট সেবাসমূহ</h3>
+                <ul>
+                    <li>ই-পাসপোর্ট আবেদন সহায়তা</li>
+                    <li>পাসপোর্ট রি-ইস্যু সেবা</li>
+                    <li>পাসপোর্ট তথ্য সংশোধন</li>
+                    <li>জরুরী পাসপোর্ট সেবা</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3><i class="fas fa-id-card"></i> ড্রাইভিং লাইসেন্স ও ভোটার নিবন্ধন সেবা</h3>
+                <ul>
+                    <li>ড্রাইভিং লাইসেন্স আবেদন</li>
+                    <li>নতুন ভোটার নিবন্ধন</li>
+                    <li>ভোটার তথ্য সংশোধন</li>
+                    <li>ই-টিন রেজিস্ট্রেশন</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3><i class="fas fa-file-alt"></i> ফরম পূরণ সেবা</h3>
+                <ul>
+                    <li>স্কুল-কলেজ ভর্তি ফরম</li>
+                    <li>বিশ্ববিদ্যালয় ভর্তি ফরম</li>
+                    <li>চাকরির আবেদন ফরম</li>
+                    <li>সরকারি ফরম পূরণ</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3><i class="fas fa-laptop"></i> কম্পিউটার সেবা</h3>
+                <ul>
+                    <li>কম্পোজ ও টাইপিং</li>
+                    <li>স্ক্যানিং ও ই-মেইল</li>
+                    <li>প্রফেশনাল সিভি তৈরি</li>
+                    <li>গ্রাফিক্স ডিজাইন</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <i class="fas fa-passport"></i>
+            ই-পাসপোর্ট ফরম পূরণের নির্দেশাবলী
+        </div>
+        
+        <div class="guidelines">
+            <div class="update-date">Last updated: 5 May 2025</div>
+            <ol>
+                <li>ই-পাসপোর্টের আবেদনপত্র অনলাইনে পূরণ করা যাবে।</li>
+                <li>ই-পাসপোর্ট আবেদনের ক্ষেত্রে কোন কাগজপত্র সত্যায়ন করার প্রয়োজন হবে না।</li>
+                <li>ই-পাসপোর্ট ফরমে কোন ছবি সংযোজন এবং তা সত্যায়নের প্রয়োজন হবে না।</li>
+                <li>জাতীয় পরিচয়পত্র (NID) অথবা অনলাইন জন্মনিবন্ধন সনদ (BRC English Version) অনুযায়ী আবেদন পত্র পূরণ করতে হবে।</li>
+                <li>অপ্রাপ্ত বয়স্ক (১৮ বছরের কম) আবেদনকারী যার জাতীয় পরিচয়পত্র (NID) নাই, তার পিতা অথবা মাতার জাতীয় পরিচয়পত্র (NID) নম্বর অবশ্যই উল্লেখ করতে হবে।</li>
+                <!-- বাকি নির্দেশাবলী এখানে যোগ করুন -->
+            </ol>
+        </div>
+        
+        <div class="section-title">
+            <i class="fas fa-id-card-alt"></i>
+            ২০২৫ সালে ড্রাইভিং লাইসেন্স করার জন্য প্রয়োজনীয় কাগজপত্র এবং প্রক্রিয়া
+        </div>
+        
+        <div class="guidelines">
+            <h3><i class="fas fa-file-contract"></i> যা যা লাগবে:</h3>
+            <ul>
+                <li>লার্নার বা শিক্ষানবিশ ড্রাইভিং লাইসেন্স: প্রথমে লার্নার লাইসেন্স সংগ্রহ করতে হবে।</li>
+                <li>আবেদন ফরম: বিআরটিএ এর ওয়েবসাইট থেকে অথবা বিআরটিএ এর অফিস থেকে আবেদন ফরম সংগ্রহ করতে হবে।</li>
+                <li>জাতীয় পরিচয়পত্র (NID): NID এর ফটোকপি ও মূলকপি সাথে রাখতে হবে।</li>
+                <li>মেডিকেল সার্টিফিকেট: একজন রেজিষ্টার্ড ডাক্তার কর্তৃক মেডিকেল সার্টিফিকেট প্রয়োজন হবে।</li>
+                <!-- বাকি আইটেমগুলো এখানে যোগ করুন -->
+            </ul>
+            
+            <h3><i class="fas fa-tasks"></i> আবেদন প্রক্রিয়া:</h3>
+            <ol>
+                <li>অনলাইনে নিবন্ধন: প্রথমে বিআরটিএ এর ওয়েবসাইটে গিয়ে অনলাইনে নিবন্ধন করতে হবে।</li>
+                <li>ফরম পূরণ: NID এর তথ্য দিয়ে আবেদন ফরম পূরণ করতে হবে।</li>
+                <li>পরীক্ষার তারিখ ও স্থান নির্বাচন: পরীক্ষার স্থান নির্বাচন করার পর পরীক্ষার তারিখ ও সময় স্বয়ংক্রিয়ভাবে নির্ধারিত হবে।</li>
+                <!-- বাকি ধাপগুলো এখানে যোগ করুন -->
+            </ol>
+        </div>
+        
+        <div class="important-notes">
+            <h3><i class="fas fa-info-circle"></i> গুরুত্বপূর্ণ তথ্য</h3>
+            <div class="note-list">
+                <div class="note-item">
+                    <h4><i class="fas fa-concierge-bell"></i> আমাদের সেবা</h4>
+                    <ul>
+                        <li>ডকুমেন্ট যাচাই ও প্রস্তুতি</li>
+                        <li>ফরম পূরণে সহায়তা</li>
+                        <li>প্রয়োজনীয় তথ্য প্রদান</li>
+                        <li>নিয়মিত আপডেট</li>
+                    </ul>
+                </div>
+                <div class="note-item">
+                    <h4><i class="fas fa-lightbulb"></i> মনে রাখবেন</h4>
+                    <ul>
+                        <li>সকল কাগজ স্পষ্ট ও পাঠযোগ্য</li>
+                        <li>ছবি সাদা ব্যাকগ্রাউন্ড</li>
+                        <li>মূল কপি সাথে রাখুন</li>
+                        <li>আগে থেকে প্রস্তুতি নিন</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h3>কোনো প্রশ্ন থাকলে বা সাহায্যের প্রয়োজন হলে আমাদের সাথে যোগাযোগ করুন</h3>
+            <div class="phone">
+                <i class="fas fa-phone-alt"></i>
+                ফোন: +88 01748-422214
+            </div>
+            <a href="https://wa.me/8801748422214" class="whatsapp-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp এ জিজ্ঞাসা করুন
+            </a>
+            <p>এক ক্লিকেই সরাসরি WhatsApp এ চলে যান</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>SSR COMPUTER SERVICES - আপনার বিশ্বস্ত সহযোগী</p>
+            <p style="margin-top: 10px; opacity: 0.8;">সকল ধরনের সরকারি ও বেসরকারি সেবা এক স্থানে</p>
+        </div>
+    </footer>
+</body>
+</html>

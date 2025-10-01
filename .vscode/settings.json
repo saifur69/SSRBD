@@ -1,0 +1,5 @@
+{
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}|;:'\",.<>/?",
+    "editor.selectionHighlight": false,
+    "editor.wordBasedSuggestions": "off"
+}

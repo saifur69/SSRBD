@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRBD - আপনার বিশ্বস্ত সার্ভিস পার্টনার</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(230, 126, 34, 0.2);
+            color: #e67e22;
+        }
+        
+        nav a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e67e22;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 80%;
+        }
+        
+        /* রিসেন্ট আপলোড সেকশন */
+        .recent-upload {
+            background: #e67e22;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* হিরো সেকশন */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+        }
+        
+        .btn:hover {
+            background: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+        }
+        
+        /* যোগাযোগ তথ্য সেকশন */
+        .contact-bar {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-item i {
+            color: #e67e22;
+        }
+        
+        /* ফিচার সেকশন */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid #e67e22;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #e67e22;
+            margin-bottom: 20px;
+            background: #fef5ec;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .feature-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* ভিডিও গ্যালারি সেকশন */
+        .video-gallery {
+            margin: 80px 0;
+            margin: auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e67e22;
+        }
+        
+        /* প্রথম ভিডিওর স্টাইল */
+        .video-item.full-width {
+            margin-bottom: 40px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        .video-item.full-width .video-player {
+            width: 100%;
+            height: 400px;
+            background: #000;
+        }
+        
+        /* পাশাপাশি ভিডিওর কন্টেইনার */
+        .side-by-side-videos {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        /* প্রতিটি ভিডিও আইটেম */
+        .video-item.half-width {
+            flex: 1;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        .video-item.half-width .video-player {
+            width: 100%;
+            height: 250px;
+            background: #000;
+        }
+        
+        /* ভিডিও এলিমেন্ট */
+        .video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* ভিডিও কন্টেন্ট */
+        .video-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .video-content h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .video-content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* সার্ভিসেস সেকশন */
+        .services {
+            margin: 80px 0;
+            margin: auto
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-item i {
+            font-size: 36px;
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+        
+        .service-item h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        /* আপডেটেড ফুটার */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #e67e22;
+            margin-bottom: 20px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-section h3 i {
+            font-size: 24px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .contact-list {
+            list-style: none;
+        }
+        
+        .contact-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .contact-list i {
+            color: #e67e22;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+        }
+        
+        .quick-links {
+            list-style: none;
+        }
+        
+        .quick-links li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        .quick-links a:hover {
+            color: #e67e22;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .developer-credit {
+            margin-top: 5px;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-by-side-videos {
+                flex-direction: column;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .video-item.full-width .video-player {
+                height: 300px;
+            }
+            
+            .video-item.half-width .video-player {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav a {
+                text-align: center;
+            }
+            
+            .video-item.full-width .video-player {
+                height: 250px;
+            }
+            
+            .video-item.half-width .video-player {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star"></i>
+                    SSRBD
+                </div>
+                <nav>
+                    <a href="index.html" class="active">হোম</a>
+                    <a href="about/index.html">এবাউট</a>
+                    <a href="products/index.html">প্রোডাক্ট</a>
+                    <a href="blog/index.html">ব্লগ</a>
+                    <a href="contact/index.html">কন্টাক্ট</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- রিসেন্ট আপলোড সেকশন -->
+    <section class="recent-upload">
+        <div class="container">
+            <p>SSR COMPUTER & PRINTING SERVICES</p>
+        </div>
+    </section>
+
+    <!-- হিরো সেকশন -->
+    <section class="hero">
+        <div class="container">
+            <h2>আপনার নিকটস্থ বিশ্বস্ত সেবা কেন্দ্র</h2>
+            <p>আমরা সব ধরনের ডিজিটাল ও প্রিন্টিং সেবায় আপনাদের পাশে আছি। আমাদের সেবার মধ্যে রয়েছে কালার ও সাদা-কালো প্রিন্ট সার্ভিস, ই-পাসপোর্ট আবেদন, রি-ইস্যু ও সংশোধন সহায়তা, ছবি থেকে ছবি প্রিন্ট করা ও লেমিনেটিং সুবিধা, ড্রাইভিং লাইসেন্স আবেদন, স্ক্যানিং ও ই-মেইল পাঠানো, নতুন ভোটার নিবন্ধন ও তথ্য সংশোধন আবেদন, কম্পিউটার কম্পোজ ও টাইপিং, স্কুল, কলেজ ও বিশ্ববিদ্যালয়ের ভর্তি ফরম পূরণ, ই-টিন রেজিস্ট্রেশন, সরকারি ও বেসরকারি চাকরির আবেদন ফরম পূরণ, প্রফেশনাল সিভি তৈরি, গ্রাফিক্স ডিজাইন ও লোগো তৈরি। এছাড়াও আমরা ভিজিটিং কার্ড, পোস্টার, ব্যানার, জন্ম স্মরণিকা ও বিবাহ স্মরণিকা তৈরি করে থাকি। আমাদের সেবার মানে আছে আস্থা ও আন্তরিকতা।</p>
+            <a href="products/index.html" class="btn">প্রোডাক্ট দেখুন</a>
+        </div>
+    </section>
+
+    <!-- যোগাযোগ তথ্য সেকশন -->
+    <section class="contact-bar">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+88 01748-422214</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>+88 01606-450137</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>saifurrahman1835@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফিচার সেকশন -->
+    <section class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>অনলাইন স্টোরের</h3>
+                <p>সহজ নেভিগেশন, কাস্টমার ফ্রেন্ডলি ডিজাইন, দ্রুত লোডিং স্পিড এবং ইউজার এক্সপেরিয়েন্স ফোকাসড ডিজাইন।</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3>ভ্যারাইটি প্রোডাক্ট</h3>
+                <p>কম্পিউটার সার্ভিস, হোম ডেকোরেশন, হোলোগিয়ার, প্রিন্টিং সার্ভিস, এবং আরও অনেক কিছু একই স্থানে।</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>সহজ পেমেন্ট</h3>
+                <p>বিকাশ, নগদ, রকেট, ব্যাংক ট্রান্সফার সহ সকল ধরনের পেমেন্ট সিস্টেম সাপোর্ট করা হয়।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ভিডিও গ্যালারি সেকশন -->
+    <section class="container video-gallery">
+        <h2 class="section-title">আমাদের কাজের নমুনা</h2>
+        
+        <!-- প্রথম ভিডিও - ফুল সাইজ -->
+        <div class="video-item full-width">
+            <div class="video-player">
+                <video controls>
+                    <source src="vidiyo/passport-vidiyo.mp4" type="video/mp4">
+                    আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
+                </video>
+            </div>
+            <div class="video-content">
+                <h4>পাসপোর্ট সার্ভিস</h4>
+                <p>আমাদের পাসপোর্ট সার্ভিসের ডেমো</p>
+            </div>
+        </div>
+        
+        <!-- দ্বিতীয় এবং তৃতীয় ভিডিও পাশাপাশি -->
+        <div class="side-by-side-videos">
+            <!-- ভিডিও ২ -->
+            <div class="video-item half-width">
+                <div class="video-player">
+                    <video controls>
+                        <source src="vidiyo/fraime-vidiyo1.mp4" type="video/mp4">
+                        আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
+                    </video>
+                </div>
+                <div class="video-content">
+                    <h4>ফ্রেম ডিজাইন ১</h4>
+                    <p>আমাদের ফ্রেম ডিজাইনের নমুনা</p>
+                </div>
+            </div>
+            
+            <!-- ভিডিও ৩ -->
+            <div class="video-item half-width">
+                <div class="video-player">
+                    <video controls>
+                        <source src="vidiyo/fraime-vidiyo2.mp4" type="video/mp4">
+                        আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
+                    </video>
+                </div>
+                <div class="video-content">
+                    <h4>ফ্রেম ডিজাইন ২</h4>
+                    <p>আমাদের ফ্রেম ডিজাইনের নমুনা</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- সার্ভিসেস সেকশন -->
+    <section class="container services">
+        <h2 class="section-title">আমাদের সার্ভিসেস</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <i class="fas fa-laptop-code"></i>
+                <h4>কম্পিউটার সার্ভিস</h4>
+                <p>সফটওয়্যার ও হার্ডওয়্যার সার্ভিস</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-home"></i>
+                <h4>হোম ডেকোরেশন</h4>
+                <p>আধুনিক হোম ডেকোরেশন আইটেম</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-tshirt"></i>
+                <h4>হোলোগিয়ার</h4>
+                <p>কাস্টমাইজড প্রিন্টেড পোশাক</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-print"></i>
+                <h4>প্রিন্টিং সার্ভিস</h4>
+                <p>সকল ধরনের প্রিন্টিং কাজ</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-id-card"></i>
+                <h4>ডকুমেন্টেশন</h4>
+                <p>সরকারি ফরম ও ডকুমেন্ট</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-headset"></i>
+                <h4>সাপোর্ট</h4>
+                <p>২৪/৭ কাস্টমার সাপোর্ট</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- আপডেটেড ফুটার -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- কোম্পানি সম্পর্কে -->
+                <div class="footer-section">
+                    <h3><i class="fas fa-building"></i> SSRBD সম্পর্কে</h3>
+                    <div class="footer-about">
+                        <p>আপনার বিশ্বস্ত সার্ভিস পার্টনার। সকল ধরনের প্রয়োজনীয় সার্ভিস একই স্থানে।</p>
+                        <p><strong>Founder:</strong> Shah Saifur Rahman</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com/ssr-canvas-co" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://facebook.com/ssr-tech-solution" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/8801606450137" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- যোগাযোগ তথ্য -->
+                <div class="footer-section">
+                    <h3><i class="fas fa-address-book"></i> যোগাযোগ</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>+৮৮ ০০১৭৪৮-৪২২২১৪</strong><br>
+                                <strong>+৮৮ ০১৬০৬-৪৫০১৩৭</strong><br>
+                                <strong>+৮৮ ০১৭৬৯-৪২২০০৪</strong>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>saifurrahman1835@gmail.com</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                সৈয়দপুর, সৈয়দ জাহান স্কুলের পাশে<br>
+                                মেজরটিলা, সিলেট, বাংলাদেশ
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- দ্রুত লিঙ্ক -->
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> দ্রুত লিঙ্ক</h3>
+                    <ul class="quick-links">
+                        <li><a href="index.html">হোম</a></li>
+                        <li><a href="about/index.html">আমাদের সম্পর্কে</a></li>
+                        <li><a href="products/index.html">প্রোডাক্ট</a></li>
+                        <li><a href="blog/index.html">ব্লগ</a></li>
+                        <li><a href="contact/index.html">যোগাযোগ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© ২০২৫ SSRBD - সকল অধিকার সংরক্ষিত</p>
+                </div>
+                <div class="developer-credit">
+                    <p>Designed & Developed by Saifur Rahman</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // সক্রিয় নেভিগেশন লিঙ্ক হ্যান্ডলিং
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // হিরো সেকশন এনিমেশন
+            const hero = document.querySelector('.hero');
+            hero.style.opacity = '0';
+            hero.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                hero.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                hero.style.opacity = '1';
+                hero.style.transform = 'translateY(0)';
+            }, 300);
+
+            // ফিচার কার্ড এনিমেশন
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 500 + (index * 200));
+            });
+
+            // ভিডিও আইটেম এনিমেশন
+            const videoItems = document.querySelectorAll('.video-item');
+            videoItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 800 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>

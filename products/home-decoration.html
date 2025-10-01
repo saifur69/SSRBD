@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRBD - প্রিমিয়াম হোম ডেকোরেশন প্রোডাক্ট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 4px solid #e67e22;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            text-align: center;
+            margin: 30px 0;
+            color: #2c3e50;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e67e22;
+        }
+        
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .product-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+        }
+        
+        .product-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #e67e22, #2c3e50);
+        }
+        
+        .product-item h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .product-images {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-images img:hover {
+            transform: scale(1.03);
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #e67e22;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .description {
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .add-to-cart {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        
+        .add-to-cart:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-icon {
+            background: #25D366;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-icon:hover {
+            background: #1da851;
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-icon i {
+            color: white;
+            font-size: 22px;
+        }
+        
+        .zoomed-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            z-index: 9999;
+            cursor: zoom-out;
+        }
+        
+        .zoomed-img img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        #cart {
+            background: #fff;
+            margin: 40px 0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        #cart h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #cart h3 i {
+            color: #e67e22;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        .checkout-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            background: #2c3e50;
+            color: #fff;
+            border-top: 4px solid #e67e22;
+        }
+        
+        @media (max-width: 768px) {
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .add-to-cart {
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                SSRBD হোম ডেকোরেশন
+            </div>
+            <div class="tagline">আপনার বাড়িকে সুন্দর করে তুলুন আমাদের এক্সক্লুসিভ প্রোডাক্টস দিয়ে</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>হোম ডেকোরেশন প্রোডাক্ট</h2>
+
+        <section class="product-list">
+            <div class="product-item" id="prod1">
+                <h3>ফ্রেম সেট ১</h3>
+                <div class="product-images">
+                    <img src="/image/B (1).png" alt="ফ্রেম ১" onclick="zoomImage(this)">
+                </div>
+                <div class="price">1200৳</div>
+                <p class="description">সুন্দর কাঠের ফ্রেম সেট, আপনার হোম ডেকোরেশনের জন্য উপযুক্ত। উচ্চমানের উপকরণ দিয়ে তৈরি এবং দীর্ঘস্থায়ী।</p>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="addToCart('ফ্রেম সেট ১', 1200)">কার্টে যোগ করুন</button>
+                    <a href="https://wa.me/8801606450137?text=আমি%20ফ্রেম%20সেট%20১%20ক্রয়%20করতে%20চাই" target="_blank" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-item" id="prod2">
+                <h3>ফ্রেম সেট ২</h3>
+                <div class="product-images">
+                    <img src="/image/B (2).png" alt="ফ্রেম ২" onclick="zoomImage(this)">
+                </div>
+                <div class="price">1500৳</div>
+                <p class="description">আধুনিক ডিজাইনের ফ্রেম সেট, আপনার দেয়ালকে দেবে নতুন লুক। বিশেষ ডিজাইন এবং উন্নত ফিনিশিং।</p>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="addToCart('ফ্রেম সেট ২', 1500)">কার্টে যোগ করুন</button>
+                    <a href="https://wa.me/8801606450137?text=আমি%20ফ্রেম%20সেট%20২%20ক্রয়%20করতে%20চাই" target="_blank" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- আরো প্রোডাক্ট যোগ করা যাবে -->
+            <div class="product-item" id="prod3">
+                <h3>ফ্রেম সেট ৩</h3>
+                <div class="product-images">
+                    <img src="/image/B (1).png" alt="ফ্রেম ৩" onclick="zoomImage(this)">
+                </div>
+                <div class="price">1800৳</div>
+                <p class="description">প্রিমিয়াম কাঠের ফ্রেম সেট, বিশেষ ডিজাইনে তৈরি। আপনার লিভিং রুমকে করে তুলবে আরও আকর্ষণীয়।</p>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="addToCart('ফ্রেম সেট ৩', 1800)">কার্টে যোগ করুন</button>
+                    <a href="https://wa.me/8801606450137?text=আমি%20ফ্রেম%20সেট%20৩%20ক্রয়%20করতে%20চাই" target="_blank" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="product-item" id="prod4">
+                <h3>ফ্রেম সেট ৪</h3>
+                <div class="product-images">
+                    <img src="/image/B (2).png" alt="ফ্রেম ৪" onclick="zoomImage(this)">
+                </div>
+                <div class="price">2000৳</div>
+                <p class="description">এক্সক্লুসিভ ডিজাইনের ফ্রেম সেট, মডার্ন হোম ডেকোরেশনের জন্য পারফেক্ট। উন্নত মানের উপকরণ ব্যবহার করা হয়েছে।</p>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="addToCart('ফ্রেম সেট ৪', 2000)">কার্টে যোগ করুন</button>
+                    <a href="https://wa.me/8801606450137?text=আমি%20ফ্রেম%20সেট%20৪%20ক্রয়%20করতে%20চাই" target="_blank" class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- কার্ট সেকশন -->
+        <section id="cart">
+            <h3><i class="fas fa-shopping-cart"></i> আপনার শপিং কার্ট</h3>
+            <div class="cart-content">
+                <div class="empty-cart">কার্ট খালি আছে।</div>
+            </div>
+            <div class="cart-total" style="display: none;">
+                মোট: <span id="total-amount">0</span>৳
+            </div>
+            <button class="checkout-btn" style="display: none;">অর্ডার সম্পন্ন করুন</button>
+        </section>
+
+        <!-- জুম করা ছবির জন্য overlay -->
+        <div class="zoomed-img" id="zoomed-img" onclick="closeZoom()">
+            <img src="" alt="Zoomed Image">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>SSRBD হোম ডেকোরেশন &copy; 2023 - সকল অধিকার সংরক্ষিত</p>
+            <p>যোগাযোগ: +88 01606450137 | আপনার বাড়ির সৌন্দর্য আমাদের অগ্রাধিকার</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        let totalAmount = 0;
+        
+        // ছবি জুম ফাংশন
+        function zoomImage(img) {
+            const zoomed = document.getElementById('zoomed-img');
+            zoomed.style.display = 'flex';
+            zoomed.querySelector('img').src = img.src;
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomed-img').style.display = 'none';
+        }
+        
+        // কার্টে প্রোডাক্ট যোগ করার ফাংশন
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            updateCartDisplay();
+            
+            // অ্যানিমেশন ইফেক্ট
+            const button = event.target;
+            button.textContent = 'কার্টে যোগ হয়েছে ✓';
+            button.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                button.textContent = 'কার্টে যোগ করুন';
+                button.style.background = '#2c3e50';
+            }, 2000);
+        }
+        
+        // কার্ট আপডেট ফাংশন
+        function updateCartDisplay() {
+            const cartContent = document.querySelector('.cart-content');
+            const cartTotal = document.querySelector('.cart-total');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            const totalAmountElem = document.getElementById('total-amount');
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = '<div class="empty-cart">কার্ট খালি আছে।</div>';
+                cartTotal.style.display = 'none';
+                checkoutBtn.style.display = 'none';
+                return;
+            }
+            
+            // কার্ট আইটেম ডিসপ্লে
+            let cartHTML = '';
+            totalAmount = 0;
+            
+            cart.forEach(item => {
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">${item.price}৳</div>
+                    </div>
+                `;
+                totalAmount += item.price;
+            });
+            
+            cartContent.innerHTML = cartHTML;
+            totalAmountElem.textContent = totalAmount;
+            cartTotal.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+        }
+        
+        // চেকআউট বাটন ইভেন্ট
+        document.querySelector('.checkout-btn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('আপনার কার্ট খালি আছে!');
+                return;
+            }
+            
+            let message = "আমি নিচের প্রোডাক্টগুলো অর্ডার দিতে চাই:%0A";
+            cart.forEach(item => {
+                message += `- ${item.name}: ${item.price}৳%0A`;
+            });
+            message += `%0Aমোট: ${totalAmount}৳`;
+            
+            const whatsappURL = `https://wa.me/8801606450137?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        });
+        
+        // কী-বোর্ড ইভেন্ট (ESC বাটন চাপলে জুম বন্ধ)
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeZoom();
+            }
+        });
+    </script>
+
+</body>
+</html>

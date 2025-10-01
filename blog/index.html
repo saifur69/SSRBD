@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRBD - ব্লগ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(230, 126, 34, 0.2);
+            color: #e67e22;
+        }
+        
+        nav a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e67e22;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 80%;
+        }
+        
+        /* ব্লগ সেকশন */
+        .blog-section {
+            flex: 1;
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e67e22;
+        }
+        
+        .blog-list {
+            display: grid;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .image-placeholder i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #e67e22;
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .blog-meta i {
+            color: #e67e22;
+        }
+        
+        .blog-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 24px;
+            line-height: 1.3;
+        }
+        
+        .blog-card p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e67e22;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .read-more:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        /* ফুটার */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .blog-content {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav a {
+                text-align: center;
+            }
+            
+            .blog-content {
+                padding: 20px;
+            }
+            
+            .blog-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star"></i>
+                    SSRBD
+                </div>
+                <nav>
+                    <a href="../index.html">হোম</a>
+                    <a href="../about/index.html">এবাউট</a>
+                    <a href="../products/index.html">প্রোডাক্ট</a>
+                    <a href="index.html" class="active">ব্লগ</a>
+                    <a href="../contact/index.html">কন্টাক্ট</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ব্লগ সেকশন -->
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="section-title">সাম্প্রতিক ব্লগ পোস্ট</h2>
+            
+            <div class="blog-list">
+                <!-- ব্লগ কার্ড ১ -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <!-- ইমেজ প্লেসহোল্ডার - আপনি পরে ইমেজ যোগ করতে পারবেন -->
+                        <div class="image-placeholder">
+                            <i class="fas fa-laptop-code"></i>
+                            <p>কম্পিউটার সার্ভিস ইমেজ</p>
+                        </div>
+                        <!-- পরবর্তীতে ইমেজ যোগ করার জন্য: -->
+                        <!-- <img src="images/computer-service.jpg" alt="কম্পিউটার সার্ভিস"> -->
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ১৫ ডিসেম্বর, ২০২৪</span>
+                            <span><i class="far fa-folder"></i> সার্ভিস</span>
+                            <span><i class="far fa-clock"></i> ৫ মিনিট পড়া</span>
+                        </div>
+                        <h3>SSRBD: আপনার বিশ্বস্ত কম্পিউটার ও প্রিন্টিং সার্ভিস পার্টনার</h3>
+                        <p class="blog-excerpt">
+                            SSRBD প্রতিষ্ঠান হিসেবে আমরা গত কয়েক বছর ধরে কমিউনিটির সেবা করে আসছি। আমাদের মূল লক্ষ্য হলো গ্রাহকদের প্রয়োজনীয় সকল ধরনের টেকনোলজি এবং প্রিন্টিং সেবা একই স্থানে সহজলভ্য করা।
+                        </p>
+                        <p>
+                            আমরা শুধু কম্পিউটার সার্ভিসই প্রদান করি না, বরং একটি সম্পূর্ণ সেবা প্যাকেজ অফার করি যেখানে রয়েছে সফটওয়্যার ইন্সটলেশন, হার্ডওয়্যার রিপেয়ার, নেটওয়ার্ক সেটআপ, এবং সকল ধরনের প্রিন্টিং কাজ। আমাদের অভিজ্ঞ টেকনিশিয়ানরা সর্বদাই প্রস্তুত আপনার যেকোনো টেকনিক্যাল সমস্যা দ্রুত সমাধান করতে।
+                        </p>
+                        <a href="#" class="read-more">
+                            <i class="fas fa-book-open"></i> সম্পূর্ণ পড়ুন
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ব্লগ কার্ড ২ -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-print"></i>
+                            <p>প্রিন্টিং সার্ভিস ইমেজ</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ১০ ডিসেম্বর, ২০২৪</span>
+                            <span><i class="far fa-folder"></i> প্রিন্টিং</span>
+                            <span><i class="far fa-clock"></i> ৪ মিনিট পড়া</span>
+                        </div>
+                        <h3>আধুনিক প্রিন্টিং সেবা: কেন SSRBD নির্বাচন করবেন?</h3>
+                        <p class="blog-excerpt">
+                            ডিজিটাল যুগেও প্রিন্টেড ম্যাটেরিয়ালের চাহিদা কমেনি, বরং বেড়েছে। আমরা SSRBD এ সর্বাধুনিক প্রিন্টিং মেশিন এবং উন্নত কালি ব্যবহার করে সর্বোচ্চ মানের প্রিন্টিং সেবা নিশ্চিত করি।
+                        </p>
+                        <p>
+                            আমাদের প্রিন্টিং সার্ভিসের মধ্যে রয়েছে কালার প্রিন্টিং, সাদা-কালো প্রিন্টিং, ফটো প্রিন্ট, ভিজিটিং কার্ড, পোস্টার, ব্যানার, এবং সকল ধরনের অফিসিয়াল ডকুমেন্ট প্রিন্টিং। আমরা দ্রুতগতিতে কাজ সম্পন্ন করি এবং যুক্তিসঙ্গত মূল্যে সেবা প্রদান করি।
+                        </p>
+                        <a href="#" class="read-more">
+                            <i class="fas fa-book-open"></i> সম্পূর্ণ পড়ুন
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ব্লগ কার্ড ৩ -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-home"></i>
+                            <p>হোম ডেকোরেশন ইমেজ</p>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ৫ ডিসেম্বর, ২০২৪</span>
+                            <span><i class="far fa-folder"></i> ডেকোরেশন</span>
+                            <span><i class="far fa-clock"></i> ৬ মিনিট পড়া</span>
+                        </div>
+                        <h3>আপনার বাড়িকে সুন্দর করে তুলুন SSRBD এর হোম ডেকোরেশন সেবা দিয়ে</h3>
+                        <p class="blog-excerpt">
+                            আপনার ব্যক্তিগত স্থানকে আরও আকর্ষণীয় এবং সুন্দর করে তুলতে আমরা অফার করি এক্সক্লুসিভ হোম ডেকোরেশন আইটেম। কাস্টমাইজড ডিজাইন এবং উন্নত মানের উপকরণ ব্যবহার করে আমরা তৈরি করি আপনার স্বপ্নের বাড়ির জন্য পারফেক্ট ডেকোরেশন।
+                        </p>
+                        <p>
+                            আমাদের হোম ডেকোরেশন কালেকশনে রয়েছে ওয়াল আর্ট, ফটো ফ্রেম, ডেকোরেটিভ আইটেম, এবং কাস্টম মেড সাজসজ্জার সামগ্রী। প্রতিটি প্রোডাক্ট তৈরি করা হয় সযত্নে এবং গ্রাহকের পছন্দ অনুযায়ী। আমরা বিশ্বাস করি যে আপনার বাড়ি আপনার ব্যক্তিত্বের প্রতিফলন হওয়া উচিত।
+                        </p>
+                        <a href="#" class="read-more">
+                            <i class="fas fa-book-open"></i> সম্পূর্ণ পড়ুন
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© ২০২৫ SSRBD | Designed by Saifur Rahman</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // সক্রিয় নেভিগেশন লিঙ্ক হ্যান্ডলিং
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // ব্লগ কার্ড এনিমেশন
+            const blogCards = document.querySelectorAll('.blog-card');
+            blogCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 300);
+            });
+        });
+    </script>
+</body>
+</html>

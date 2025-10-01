@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRBD - কন্টাক্ট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(230, 126, 34, 0.2);
+            color: #e67e22;
+        }
+        
+        nav a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e67e22;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 80%;
+        }
+        
+        /* কন্টাক্ট সেকশন */
+        .contact-section {
+            flex: 1;
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e67e22;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        .contact-form h3 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-form h3 i {
+            color: #e67e22;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #e67e22;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: #e67e22;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        /* কন্টাক্ট ইনফো */
+        .contact-info {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info h3 i {
+            color: #e67e22;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #e67e22;
+        }
+        
+        .contact-method:hover {
+            transform: translateX(5px);
+            background: #fef5ec;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #e67e22;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .whatsapp-icon {
+            background: #25D366;
+        }
+        
+        .contact-details h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            color: #555;
+        }
+        
+        .contact-details a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: #e67e22;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* ফোন কল বাটন */
+        .call-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e67e22;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+        
+        .call-btn:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        /* ফ্লোটিং WhatsApp বাটন */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .floating-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ফুটার */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-form,
+            .contact-info {
+                padding: 30px;
+            }
+            
+            .floating-whatsapp {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav a {
+                text-align: center;
+            }
+            
+            .contact-form,
+            .contact-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star"></i>
+                    SSRBD
+                </div>
+                <nav>
+                    <a href="../index.html">হোম</a>
+                    <a href="../about/index.html">এবাউট</a>
+                    <a href="../products/index.html">প্রোডাক্ট</a>
+                    <a href="../blog/index.html">ব্লগ</a>
+                    <a href="index.html" class="active">কন্টাক্ট</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- কন্টাক্ট সেকশন -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">আমাদের সাথে যোগাযোগ করুন</h2>
+            
+            <div class="contact-container">
+                <!-- কন্টাক্ট ফর্ম -->
+                <div class="contact-form">
+                    <h3><i class="fas fa-envelope"></i> মেসেজ পাঠান</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">আপনার নাম</label>
+                            <input type="text" id="name" name="name" required placeholder="আপনার পুরো নাম লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">ফোন নম্বর</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="আপনার ফোন নম্বর লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">ইমেইল ঠিকানা</label>
+                            <input type="email" id="email" name="email" placeholder="আপনার ইমেইল ঠিকানা লিখুন">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">সেবার ধরন</label>
+                            <select id="service" name="service">
+                                <option value="">সেবা নির্বাচন করুন</option>
+                                <option value="computer">কম্পিউটার সার্ভিস</option>
+                                <option value="printing">প্রিন্টিং সার্ভিস</option>
+                                <option value="decoration">হোম ডেকোরেশন</option>
+                                <option value="holo">হোলোগিয়ার</option>
+                                <option value="other">অন্যান্য</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">আপনার মেসেজ</label>
+                            <textarea id="message" name="message" required placeholder="আপনার মেসেজ এখানে লিখুন..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> মেসেজ পাঠান
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- কন্টাক্ট ইনফো -->
+                <div class="contact-info">
+                    <h3><i class="fas fa-address-book"></i> সরাসরি যোগাযোগ</h3>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon whatsapp-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp এ মেসেজ করুন</h4>
+                                <p>সরাসরি WhatsApp এ চ্যাট করুন</p>
+                                <a href="https://wa.me/8801606450137" class="whatsapp-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp এ মেসেজ
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>ফোন করুন</h4>
+                                <p>সরাসরি ফোনে কথা বলুন</p>
+                                <a href="tel:+8801606450137" class="call-btn">
+                                    <i class="fas fa-phone"></i> +৮৮ ০১৬০৬-৪৫০১৩৭
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>ইমেইল ঠিকানা</h4>
+                                <p>
+                                    <a href="mailto:saifurrahman1835@gmail.com">saifurrahman1835@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>কাজের সময়</h4>
+                                <p>সকাল ৯:০০ - রাত ১০:০০<br>সপ্তাহের ৭ দিন</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফ্লোটিং WhatsApp বাটন -->
+    <a href="https://wa.me/8801606450137" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ফুটার -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© ২০২৫ SSRBD | Designed by Saifur Rahman</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // সক্রিয় নেভিগেশন লিঙ্ক হ্যান্ডলিং
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // ফর্ম সাবমিশন হ্যান্ডলিং
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // ফর্ম ডেটা সংগ্রহ
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                
+                if (name && phone && message) {
+                    // WhatsApp মেসেজ তৈরি
+                    const whatsappMessage = `নাম: ${name}%0Aফোন: ${phone}%0Aইমেইল: ${email}%0Aসেবা: ${service}%0Aমেসেজ: ${message}`;
+                    
+                    // WhatsApp এ রিডাইরেক্ট
+                    window.open(`https://wa.me/8801606450137?text=${whatsappMessage}`, '_blank');
+                    
+                    // সাকসেস মেসেজ
+                    alert('আপনার মেসেজটি WhatsApp এ পাঠানো হচ্ছে...');
+                    contactForm.reset();
+                }
+            });
+            
+            // এনিমেশন
+            const contactMethods = document.querySelectorAll('.contact-method');
+            contactMethods.forEach((method, index) => {
+                method.style.opacity = '0';
+                method.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    method.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    method.style.opacity = '1';
+                    method.style.transform = 'translateX(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSRBD - প্রোডাক্ট</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* হেডার স্টাইল */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #e67e22;
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(230, 126, 34, 0.2);
+            color: #e67e22;
+        }
+        
+        nav a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #e67e22;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 80%;
+        }
+        
+        /* প্রোডাক্ট ক্যাটাগরি সেকশন */
+        .products-categories {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #e67e22;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid #e67e22;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+            color: inherit;
+        }
+        
+        .category-icon {
+            font-size: 40px;
+            color: #e67e22;
+            margin-bottom: 20px;
+            background: #fef5ec;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .category-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .category-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* ফুটার */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 30px 0;
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav a {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- হেডার -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-star"></i>
+                    SSRBD
+                </div>
+                <nav>
+                    <a href="../index.html">হোম</a>
+                    <a href="../about/index.html">এবাউট</a>
+                    <a href="index.html" class="active">প্রোডাক্ট</a>
+                    <a href="../blog/index.html">ব্লগ</a>
+                    <a href="../contact/index.html">কন্টাক্ট</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- প্রোডাক্ট ক্যাটাগরি সেকশন -->
+    <section class="products-categories">
+        <div class="container">
+            <h2 class="section-title">প্রোডাক্ট ক্যাটাগরি</h2>
+            <div class="categories-grid">
+                <a href="holo-gallery.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>হোলোগিয়ার</h3>
+                    <p>কাস্টমাইজড প্রিন্টেড পোশাক এবং হোলোগিয়ার আইটেম</p>
+                </a>
+                
+                <a href="computer-service.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>কম্পিউটার সার্ভিস</h3>
+                    <p>সফটওয়্যার ও হার্ডওয়্যার সম্পর্কিত সকল ধরনের সার্ভিস</p>
+                </a>
+                
+                <a href="printing-service.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>কম্পিউটার ও প্রিন্টিং সার্ভিস</h3>
+                    <p>প্রিন্টিং এবং কম্পিউটার সম্পর্কিত সকল ধরনের সার্ভিস</p>
+                </a>
+                
+                <a href="home-decoration.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>হোম ডেকোরেশন প্রোডাক্ট</h3>
+                    <p>আধুনিক হোম ডেকোরেশন আইটেম এবং সাজসজ্জা</p>
+                </a>
+                
+                <a href="glossary.html" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>গ্লোসারি প্রোডাক্ট</h3>
+                    <p>বিভিন্ন ধরনের গ্লোসারি এবং বিশেষ প্রোডাক্ট</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফুটার -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© ২০২৫ SSRBD | Designed by Saifur Rahman</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // সক্রিয় নেভিগেশন লিঙ্ক হ্যান্ডলিং
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            
+            // ক্যাটাগরি কার্ড এনিমেশন
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -178,16 +178,21 @@
         }
         
         .company-image {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    height: 400px;
-    width: 600px;
-    border-radius: 15px;
-    display: flex;
-    align-items: middle;
-    justify-content: middle;
-    color: white;
-    position: relative;
-    overflow: hidden;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .company-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .image-placeholder {
@@ -468,14 +473,12 @@
                     </p>
                 </div>
                 <div class="company-image">
-                    <!-- ইমেজ প্লেসহোল্ডার - আপনি পরে ইমেজ যোগ করতে পারবেন -->
-                     <img src="/image/saifur1.png" alt="">
+                    <!-- ইমেজ যোগ করুন -->
+                    <!-- <img src="images/company-image.jpg" alt="SSRBD Office"> -->
                     <div class="image-placeholder">
                         <i class="fas fa-building"></i>
                         <p>আমাদের প্রতিষ্ঠানের ছবি</p>
                     </div>
-                    <!-- পরবর্তীতে ইমেজ যোগ করার জন্য: -->
-                    <!-- <img src="images/company-building.jpg" alt="SSRBD Office" style="width: 100%; height: 100%; object-fit: cover;"> -->
                 </div>
             </div>
 
@@ -620,15 +623,15 @@
             <div class="stats-section">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <h3>৫০০+</h3>
+                        <h3 data-target="500">0+</h3>
                         <p>সন্তুষ্ট গ্রাহক</p>
                     </div>
                     <div class="stat-item">
-                        <h3>৫+</h3>
+                        <h3 data-target="5">0+</h3>
                         <p>বছরের অভিজ্ঞতা</p>
                     </div>
                     <div class="stat-item">
-                        <h3>১০০০+</h3>
+                        <h3 data-target="1000">0+</h3>
                         <p>সম্পন্ন প্রজেক্ট</p>
                     </div>
                     <div class="stat-item">
@@ -665,11 +668,11 @@
             });
 
             // কাউন্টার এনিমেশন
-            const counters = document.querySelectorAll('.stat-item h3');
+            const counters = document.querySelectorAll('.stat-item h3[data-target]');
             const speed = 200;
 
-            counters.forEach(counter => {
-                const updateCount = () => {
+            function startCounters() {
+                counters.forEach(counter => {
                     const target = +counter.getAttribute('data-target');
                     const count = +counter.innerText.replace('+', '');
                     
@@ -677,20 +680,28 @@
 
                     if (count < target) {
                         counter.innerText = Math.ceil(count + inc) + '+';
-                        setTimeout(updateCount, 1);
+                        setTimeout(() => startCounters(), 1);
                     } else {
                         counter.innerText = target + '+';
                     }
-                };
+                });
+            }
 
-                // Set data-target attributes
-                const text = counter.innerText;
-                const value = text.replace('+', '');
-                counter.setAttribute('data-target', value);
-                counter.innerText = '0+';
-                
-                setTimeout(updateCount, 500);
-            });
+            // Intersection Observer for counter animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Observe stats section
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
         });
     </script>
 </body>

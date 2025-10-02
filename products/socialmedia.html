@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socialmedia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === বেসিক স্টাইল === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Kalpurush', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* === হিরো সেকশন === */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9));
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* === নেভিগেশন ট্যাবস === */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        
+        .tab-btn {
+            background: white;
+            border: 2px solid #2c3e50;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        
+        .tab-btn.active {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .tab-btn:hover {
+            background: #34495e;
+            color: white;
+        }
+        
+        /* === মেইন কন্টেন্ট গ্রিড === */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* === সার্ভিস লিস্ট === */
+        .services-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .service-card {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e67e22;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .service-name {
+            font-weight: bold;
+            color: #2c3e50;
+            flex: 1;
+            font-size: 14px;
+        }
+        
+        .service-price {
+            background: #e67e22;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 12px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        
+        .service-meta {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .order-btn {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .order-btn:hover {
+            background: #34495e;
+        }
+        
+        /* === অর্ডার ফর্ম === */
+        .order-form-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #e67e22;
+            outline: none;
+        }
+        
+        .price-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px dashed #e67e22;
+        }
+        
+        .total-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        
+        .submit-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #128C7E;
+        }
+        
+        /* === বিকাশ সেকশন === */
+        .bkash-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .bkash-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e2136e;
+        }
+        
+        .bkash-number {
+            background: #e2136e;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        /* === হোয়াটসঅ্যাপ গ্রুপ === */
+        .whatsapp-group {
+            background: #25D366;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .whatsapp-group a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        
+        /* === ফিক্সড হোয়াটসঅ্যাপ বাটন === */
+        .fixed-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        .fixed-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        
+        /* === কন্টাক্ট সেকশন === */
+        .contact-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .contact-item i {
+            color: #e67e22;
+        }
+
+        /* === সার্চ বক্স === */
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            padding-left: 45px;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- হিরো সেকশন -->
+    <section class="hero">
+        <div class="container">
+            <h1>এসএসআরবিডি - সোশ্যাল মিডিয়া সার্ভিস</h1>
+            <p>আপনার সোশ্যাল মিডিয়া প্রমোশনের জন্য বিশ্বস্ত পার্টনার</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- নেভিগেশন ট্যাবস -->
+        <div class="nav-tabs" id="navTabs">
+            <button class="tab-btn active" data-platform="all">সব সার্ভিস</button>
+            <button class="tab-btn" data-platform="facebook">📱 Facebook</button>
+            <button class="tab-btn" data-platform="instagram">📸 Instagram</button>
+            <button class="tab-btn" data-platform="youtube">📺 YouTube</button>
+            <button class="tab-btn" data-platform="tiktok">🎵 TikTok</button>
+            <button class="tab-btn" data-platform="twitter">🐦 Twitter</button>
+            <button class="tab-btn" data-platform="telegram">✈️ Telegram</button>
+            <button class="tab-btn" data-platform="other">🔗 অন্যান্য</button>
+        </div>
+
+        <!-- মেইন কন্টেন্ট -->
+        <div class="main-grid">
+            <!-- সার্ভিস লিস্ট -->
+            <div class="services-section">
+                <h3 style="margin-bottom: 15px; color: #2c3e50;">সার্ভিস লিস্ট</h3>
+                
+                <!-- সার্চ বক্স -->
+                <div class="search-box">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeder="সার্ভিস খুঁজুন...">
+                    </div>
+                </div>
+                
+                <div id="servicesList">
+                    <!-- সার্ভিসগুলো এখানে লোড হবে -->
+                </div>
+            </div>
+
+            <!-- অর্ডার ফর্ম -->
+            <div class="order-form-section">
+                <h3 style="margin-bottom: 20px; color: #2c3e50;">অর্ডার ফর্ম</h3>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="serviceSelect">সার্ভিস নির্বাচন করুন:</label>
+                        <select class="form-control" id="serviceSelect" required>
+                            <option value="">সার্ভিস সিলেক্ট করুন</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="linkInput">লিঙ্ক দিন:</label>
+                        <input type="url" class="form-control" id="linkInput" placeder="https://example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantityInput">কোয়ান্টিটি (১০০০-৫০০০০০):</label>
+                        <input type="number" class="form-control" id="quantityInput" min="1000" max="500000" value="1000" required>
+                    </div>
+                    
+                    <div class="price-display">
+                        <div>মোট দাম:</div>
+                        <div class="total-price" id="totalPrice">০ টাকা</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে অর্ডার করুন
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- বিকাশ ক্যাশ আউট -->
+        <div class="bkash-section">
+            <h3 class="bkash-header">💰 বিকাশ ক্যাশ আউট</h3>
+            <div class="bkash-number">
+                বিকাশ নম্বর: ০১৭১৬-৩৯৭৯৭১
+            </div>
+            <form id="bkashForm">
+                <div class="form-group">
+                    <label for="userName">আপনার নাম:</label>
+                    <input type="text" class="form-control" id="userName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userBkash">আপনার বিকাশ নম্বর:</label>
+                    <input type="text" class="form-control" id="userBkash" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">টাকার পরিমাণ:</label>
+                    <input type="number" class="form-control" id="amount" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionId">ট্রানজেকশন আইডি:</label>
+                    <input type="text" class="form-control" id="transactionId" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="screenshot">স্ক্রিনশট আপলোড:</label>
+                    <input type="file" class="form-control" id="screenshot" accept="image/*">
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে পাঠান
+                </button>
+            </form>
+        </div>
+
+        <!-- হোয়াটসঅ্যাপ গ্রুপ -->
+        <div class="whatsapp-group">
+            <h3>📱 আমাদের WhatsApp গ্রুপে যুক্ত হোন</h3>
+            <a href="https://chat.whatsapp.com/CpQv71L1HOGAYbHT8S43GX" target="_blank">
+                গ্রুপে জয়েন করুন
+            </a>
+        </div>
+    </div>
+
+    <!-- কন্টাক্ট সেকশন -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>আমাদের সাথে যোগাযোগ করুন</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+88 01748-422214</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+88 01606-450137</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+88 01869-433004</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ফিক্সড হোয়াটসঅ্যাপ বাটন -->
+    <a href="https://wa.me/8801606450137" class="fixed-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // === সম্পূর্ণ সার্ভিস ডেটা ===
+        const services = [
+            // ফেসবুক সার্ভিস
+            { id: "FB-001", name: "Facebook - Post React [Ultra Cheap]", price: 22, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-002", name: "Facebook - Follower [Cheap]", price: 26, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-003", name: "Facebook - Follower [Global]", price: 56, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-004", name: "Facebook - Follower [100% Nondrop]", price: 104, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-005", name: "Facebook - BD Mix Follow [Instant]", price: 54, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-006", name: "Facebook - Follower [PROVIDER] 💥", price: 130, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-007", name: "Facebook - Service [English Name] NEW", price: 230, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-008", name: "Facebook - Video/Reels Views 🔥", price: 8, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-009", name: "Facebook - Post Share NEW [PROVIDER]", price: 2, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-010", name: "Facebook - Meta Blue Verified", price: 936, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-011", name: "Facebook ⭐ Star Gift 🎁", price: 5754, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-012", name: "Tin Certificate [E -TIN]", price: 198, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-013", name: "Facebook - BD Page Follower 🇧🇩", price: 194, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-014", name: "Facebook - Bangladeshi Follower 🇧🇩", price: 182, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-015", name: "Facebook - Bangladeshi Like+Follow 🇧🇩", price: 110, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-016", name: "Facebook - BD Comment | Page Review 🇧🇩", price: 830, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-017", name: "Facebook - BD Group Members 🇧🇩", price: 234, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-018", name: "Facebook - Group Member 🌏", price: 126, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-019", name: "Facebook - Pool Vot Service", price: 310, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-020", name: "Facebook - Profile Follower 🌏", price: 102, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-021", name: "Facebook - Page Follower 🌏", price: 242, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-022", name: "Facebook - Page Like+Follower 🌏", price: 146, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-023", name: "Facebook - Page Like/Follow [Instant]", price: 84, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-024", name: "Facebook - 60k WatchTime [Cheapest]", price: 208, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-025", name: "Facebook - 600k WatchTime", price: 538, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-026", name: "Facebook - Video/Reels Views UPDATED", price: 8, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-027", name: "Facebook - Video Views [Impression+Reach]", price: 26, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-028", name: "Facebook - BD Mixed React [Instant] Sv1", price: 64, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-029", name: "Facebook - BD Mixed React [Instant] 🇧🇩 Sv2", price: 460, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-030", name: "Facebook - Story React [Cheap] NEW", price: 114, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-031", name: "Facebook - Story React [Mixed] NEW", price: 116, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-032", name: "Facebook - Post React [Mixed]", price: 132, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-033", name: "Facebook - Post React [Cheap]", price: 38, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-034", name: "Facebook - Post React [Cheap]", price: 78, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-035", name: "Facebook - Post React SV1", price: 82, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-036", name: "Facebook - Post React SV2", price: 134, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-037", name: "Facebook - Post React SV3", price: 250, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-038", name: "Facebook - Live Stream Views NEW", price: 234, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-039", name: "🇺🇸 Facebook - USA Services", price: 3126, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-040", name: "🇬🇧 Facebook - UK Service", price: 2136, platform: "facebook", min: 1000, max: 500000 },
+            { id: "FB-041", name: "Followers [Cheap] NEW", price: 446, platform: "facebook", min: 1000, max: 500000 },
+
+            // ইন্সটাগ্রাম সার্ভিস
+            { id: "IG-001", name: "Instagram - Followers [Cheap]", price: 378, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-002", name: "Instagram - Followers UPDATED", price: 670, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-003", name: "Instagram - Follower [Old Account] UPDATED", price: 562, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-004", name: "Instagram - Followers [Mix Profile] UPDATED", price: 826, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-005", name: "Instagram - Followers [Old Account] UPDATED", price: 544, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-006", name: "Instagram - Followers [Targeted]", price: 7188, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-007", name: "Instagram - Video Views", price: 2, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-008", name: "Instagram Likes UPDATED", price: 104, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-009", name: "Instagram - Likes [High Quality]", price: 80, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-010", name: "Instagram - Indian Service 🇮🇳", price: 1114, platform: "instagram", min: 1000, max: 500000 },
+            { id: "IG-011", name: "Instagram - Comment", price: 180, platform: "instagram", min: 1000, max: 500000 },
+
+            // ইউটিউব সার্ভিস
+            { id: "YT-001", name: "YouTube - WatchTime UPDATED", price: 14246, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-002", name: "YouTube - Subscriber 🏆 Lifetime [Best]", price: 5260, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-003", name: "YouTube - Subscribers [Country Targeted]", price: 8000, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-004", name: "Youtube - Views [Cheap] ⚡", price: 220, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-005", name: "YouTube - Views [Nondrop] ♻️", price: 388, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-006", name: "Youtube - Views [Native Ads] ♻️", price: 238, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-007", name: "Youtube - Views [Native Ads] India 🇮🇳", price: 206, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-008", name: "Youtube - Views [Native Ads] Targeted", price: 400, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-009", name: "Youtube - Views [Revenue] NEW", price: 362, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-010", name: "YouTube - Views [Adwords] NEW", price: 130, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-011", name: "Youtube - Views [Skkipable Ads]", price: 272, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-012", name: "Youtube - Views [Targeted]", price: 1714, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-013", name: "YouTube - Views [SEO] - USA 🇺🇸", price: 170, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-014", name: "YouTube - Likes Service", price: 26, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-015", name: "YouTube - Comment Like", price: 126, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-016", name: "YouTube - Live Stream Views", price: 18, platform: "youtube", min: 1000, max: 500000 },
+            { id: "YT-017", name: "YouTube - Custom Comments", price: 0, platform: "youtube", min: 1000, max: 500000 },
+
+            // টিকটক সার্ভিস
+            { id: "TT-001", name: "TikTok - Recomended", price: 4, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-002", name: "Tiktok - Views", price: 2, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-003", name: "TikTok - Views [Targeted]", price: 20, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-004", name: "Tiktok - Like [Updated 18.6.25]", price: 4, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-005", name: "TikTok - Like [Working]", price: 30, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-006", name: "Tiktok - Like Service", price: 4, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-007", name: "TikTok - Follower [TOP SPEED] 🔥", price: 352, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-008", name: "Tiktok - Follower [Monetaizable]", price: 780, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-009", name: "TikTok - Follower Sv1", price: 204, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-010", name: "TikTok - Follower Sv2", price: 298, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-011", name: "TikTok - Follower Sv3", price: 366, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-012", name: "TikTok - Follower [Brazil] 🇧🇷", price: 372, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-013", name: "TikTok - Follower [Pakistan] 🇵🇰", price: 412, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-014", name: "TikTok - Share & Save", price: 4, platform: "tiktok", min: 1000, max: 500000 },
+            { id: "TT-015", name: "TikTok - Comments", price: 402, platform: "tiktok", min: 1000, max: 500000 },
+
+            // টুইটার সার্ভিস
+            { id: "TW-001", name: "Twitter - Followers [Emergency]", price: 952, platform: "twitter", min: 1000, max: 500000 },
+            { id: "TW-002", name: "Twitter - Followers", price: 94, platform: "twitter", min: 1000, max: 500000 },
+            { id: "TW-003", name: "Twitter - Follower [Targeted]", price: 1714, platform: "twitter", min: 1000, max: 500000 },
+            { id: "TW-004", name: "Twitter - Likes", price: 44, platform: "twitter", min: 1000, max: 500000 },
+            { id: "TW-005", name: "Twitter - Live Stream Views [Broadcast]", price: 504, platform: "twitter", min: 1000, max: 500000 },
+
+            // টেলিগ্রাম সার্ভিস
+            { id: "TG-001", name: "Telegram - Member", price: 6, platform: "telegram", min: 1000, max: 500000 },
+            { id: "TG-002", name: "Telegram - Member [Provider]", price: 164, platform: "telegram", min: 1000, max: 500000 },
+            { id: "TG-003", name: "Telegram - Positive Reactions", price: 44, platform: "telegram", min: 1000, max: 500000 },
+            { id: "TG-004", name: "Telegram - Negative Reactions", price: 4, platform: "telegram", min: 1000, max: 500000 },
+
+            // অন্যান্য সার্ভিস
+            { id: "OT-001", name: "Lemon 8 [Thailand]", price: 756, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-002", name: "Discord Service", price: 522, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-003", name: "Kick Service", price: 1236, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-004", name: "Apple Music", price: 1892, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-005", name: "Pinterest", price: 726, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-006", name: "Linkedin", price: 5008, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-007", name: "SoundCloud", price: 1702, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-008", name: "Shopee Live Stream", price: 804, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-009", name: "Spotify - Follower", price: 90, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-010", name: "Spotify Plays - Cheap", price: 92, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-011", name: "Spotify Plays - Targeted", price: 244, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-012", name: "Spotify - Monthly Listeners", price: 514, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-013", name: "Fiverr Service", price: 0, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-014", name: "WhatsApp Post Reaction [Cheapest] NEW", price: 240, platform: "other", min: 1000, max: 500000 },
+            { id: "OT-015", name: "🇺🇸 Website Traffic From USA", price: 96, platform: "other", min: 1000, max: 500000 }
+        ];
+
+        // === ওয়েবসাইট লোড হওয়ার পর ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const servicesList = document.getElementById('servicesList');
+            const serviceSelect = document.getElementById('serviceSelect');
+            const quantityInput = document.getElementById('quantityInput');
+            const totalPrice = document.getElementById('totalPrice');
+            const orderForm = document.getElementById('orderForm');
+            const bkashForm = document.getElementById('bkashForm');
+            const navTabs = document.getElementById('navTabs');
+            const searchInput = document.getElementById('searchInput');
+            
+            let selectedService = null;
+            let currentPlatform = 'all';
+            let currentSearch = '';
+
+            // === সার্ভিস লোড ফাংশন ===
+            function loadServices(platform = 'all', search = '') {
+                servicesList.innerHTML = '';
+                serviceSelect.innerHTML = '<option value="">সার্ভিস সিলেক্ট করুন</option>';
+                
+                // সার্ভিস ফিল্টার করি
+                let filteredServices = services;
+                
+                // প্ল্যাটফর্ম ফিল্টার
+                if (platform !== 'all') {
+                    filteredServices = filteredServices.filter(service => service.platform === platform);
+                }
+                
+                // সার্চ ফিল্টার
+                if (search) {
+                    filteredServices = filteredServices.filter(service => 
+                        service.name.toLowerCase().includes(search.toLowerCase())
+                    );
+                }
+                
+                // সার্ভিস লিস্টে দেখাই
+                filteredServices.forEach(service => {
+                    // সার্ভিস কার্ড তৈরি
+                    const serviceCard = document.createElement('div');
+                    serviceCard.className = 'service-card';
+                    serviceCard.innerHTML = `
+                        <div class="service-header">
+                            <div class="service-name">${service.name}</div>
+                            <div class="service-price">${service.price} টাকা/1000</div>
+                        </div>
+                        <div class="service-meta">মিনিমাম: ${service.min} | ম্যাক্সিমাম: ${service.max}</div>
+                        <button class="order-btn" data-id="${service.id}">
+                            অর্ডার করুন
+                        </button>
+                    `;
+                    servicesList.appendChild(serviceCard);
+                    
+                    // ড্রপডাউনে যোগ করি
+                    const option = document.createElement('option');
+                    option.value = service.id;
+                    option.textContent = service.name;
+                    serviceSelect.appendChild(option);
+                });
+                
+                // সার্ভিস কার্ডে ক্লিক ইভেন্ট যোগ
+                document.querySelectorAll('.order-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const serviceId = this.getAttribute('data-id');
+                        selectService(serviceId);
+                    });
+                });
+            }
+
+            // === সার্ভিস সিলেক্ট ফাংশন ===
+            function selectService(serviceId) {
+                selectedService = services.find(service => service.id === serviceId);
+                serviceSelect.value = serviceId;
+                calculateTotalPrice();
+            }
+
+            // === মোট দাম ক্যালকুলেশন ===
+            function calculateTotalPrice() {
+                if (!selectedService) {
+                    totalPrice.textContent = '০ টাকা';
+                    return;
+                }
+                
+                const quantity = parseInt(quantityInput.value) || 0;
+                const pricePer1000 = selectedService.price;
+                const total = (quantity / 1000) * pricePer1000;
+                
+                totalPrice.textContent = `${Math.round(total)} টাকা`;
+            }
+
+            // === অর্ডার ফর্ম সাবমিট ===
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!selectedService) {
+                    alert('দয়া করে একটি সার্ভিস সিলেক্ট করুন');
+                    return;
+                }
+                
+                const link = document.getElementById('linkInput').value;
+                const quantity = parseInt(quantityInput.value);
+                const total = (quantity / 1000) * selectedService.price;
+                
+                // হোয়াটসঅ্যাপ মেসেজ তৈরি
+                const message = `📱 নতুন অর্ডার এসেছে!%0A%0Aসার্ভিস: ${selectedService.name}%0Aলিঙ্ক: ${link}%0Aকোয়ান্টিটি: ${quantity}%0Aমোট দাম: ${Math.round(total)} টাকা%0A%0Aঅর্ডার কনফার্ম করুন।`;
+                const whatsappUrl = `https://wa.me/8801606450137?text=${message}`;
+                
+                // হোয়াটসঅ্যাপে খুলে দেই
+                window.open(whatsappUrl, '_blank');
+                
+                alert('আপনার অর্ডার হোয়াটসঅ্যাপে পাঠানো হয়েছে!');
+            });
+
+            // === বিকাশ ফর্ম সাবমিট ===
+            bkashForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const userName = document.getElementById('userName').value;
+                const userBkash = document.getElementById('userBkash').value;
+                const amount = document.getElementById('amount').value;
+                const transactionId = document.getElementById('transactionId').value;
+                
+                // হোয়াটসঅ্যাপ মেসেজ তৈরি
+                const message = `💳 নতুন ক্যাশ আউট রিকোয়েস্ট!%0A%0Aনাম: ${userName}%0Aবিকাশ নম্বর: ${userBkash}%0Aটাকার পরিমাণ: ${amount} টাকা%0Aট্রানজেকশন আইডি: ${transactionId}%0Aআমার বিকাশ: 01716-397971%0A%0Aকনফার্ম করুন।`;
+                const whatsappUrl = `https://wa.me/8801606450137?text=${message}`;
+                
+                // হোয়াটসঅ্যাপে খুলে দেই
+                window.open(whatsappUrl, '_blank');
+                
+                alert('আপনার ক্যাশ আউট রিকোয়েস্ট হোয়াটসঅ্যাপে পাঠানো হয়েছে!');
+                bkashForm.reset();
+            });
+
+            // === ট্যাব ক্লিক ইভেন্ট ===
+            navTabs.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tab-btn')) {
+                    // সব ট্যাব থেকে active ক্লাস সরাই
+                    document.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // ক্লিক করা ট্যাবে active ক্লাস যোগ করি
+                    e.target.classList.add('active');
+                    
+                    // প্ল্যাটফর্ম নিয়ে সার্ভিস লোড করি
+                    currentPlatform = e.target.getAttribute('data-platform');
+                    loadServices(currentPlatform, currentSearch);
+                }
+            });
+
+            // === সার্চ ইভেন্ট ===
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value;
+                loadServices(currentPlatform, currentSearch);
+            });
+
+            // === কোয়ান্টিটি পরিবর্তনে দাম আপডেট ===
+            quantityInput.addEventListener('input', calculateTotalPrice);
+            
+            // === সার্ভিস সিলেক্ট পরিবর্তন ===
+            serviceSelect.addEventListener('change', function() {
+                if (this.value) {
+                    selectService(this.value);
+                }
+            });
+
+            // === প্রথমবার সার্ভিস লোড ===
+            loadServices();
+        });
+    </script>
+</body>
+</html>
